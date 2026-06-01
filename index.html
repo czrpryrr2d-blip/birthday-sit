@@ -5,68 +5,263 @@
     <title>Happy Birthday APPA</title>
     <style>
         body {
-            background-color: #121212; /* Dark, moody aesthetic */
+            background-color: #0d0d0d; /* Ultra-premium deep dark background */
             color: #ffffff;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             text-align: center;
             padding: 40px 20px;
             margin: 0;
+            overflow-x: hidden;
         }
+
+        /* Smooth fade-in for the whole page */
+        .wrapper {
+            animation: fadeIn 2s ease-in-out;
+        }
+
         h1 {
-            color: #ffd700; /* Gold heading */
-            font-size: 2.5rem;
+            color: #ffd700; /* Luxury Gold */
+            font-size: 2.8rem;
             margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
         }
+
         .subtitle {
             color: #aaaaaa;
             font-size: 1.2rem;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
         }
+
+        /* Audio Player Styling */
+        .audio-container {
+            margin: 20px auto 40px auto;
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 30px;
+            max-width: 320px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            border: 1px solid #2a2a2a;
+        }
+        .audio-container p {
+            margin: 0 0 10px 0;
+            font-size: 0.9rem;
+            color: #ffd700;
+        }
+
+        /* The Hall of Fame Photo Gallery */
         .gallery {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 25px;
+            gap: 35px;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 0 auto 50px auto;
         }
+
         .frame {
-            background: #1e1e1e;
+            background: #161616;
             padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-            border: 1px solid #333333;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            border: 1px solid #2a2a2a;
             width: 100%;
             box-sizing: border-box;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
+
+        /* Image interaction: grows slightly when hovered or tapped */
+        .frame:hover {
+            transform: scale(1.02);
+            border-color: #ffd700;
+        }
+
         .frame img {
             width: 100%;
             height: auto;
-            border-radius: 6px;
+            border-radius: 8px;
             display: block;
+        }
+
+        /* Interactive Birthday Messages Section */
+        .message-section {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .message-section h2 {
+            text-align: center;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+
+        details {
+            background: #161616;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #2a2a2a;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        details[open] {
+            background: #1e1e1e;
+            border-color: #ffd700;
+        }
+
+        summary {
+            font-weight: bold;
+            color: #ffd700;
+            outline: none;
+            user-select: none;
+        }
+
+        details p {
+            margin-top: 10px;
+            color: #dddddd;
+            line-height: 1.6;
+        }
+
+        /* Confetti Canvas element overlay */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-<script>
-alert("🎉 Happy Birthday Dad! 🎂");
-</script>
+<!-- Confetti layers fall right on top of this canvas -->
+<canvas id="confetti-canvas"></canvas>
 
-<h1>🎉 Happy Birthday APPA! 🎉</h1>
-<p class="subtitle">Welcome to your Hall of Fame.</p>
+<div class="wrapper">
 
-<div class="gallery">
-    <div class="frame">
-        <img src="photo1.JPG" alt="Dad Photo 1">
+    <h1>🎉 Happy Birthday APPA! 🎉</h1>
+    <p class="subtitle">Welcome to your official Hall of Fame.</p>
+
+    <!-- OPTIONAL MUSIC PLAYER -->
+    <!-- To make this play music, put an audio file (like music.mp3) inside your desktop folder, rename it to music.mp3, and upload it to GitHub alongside your photos! -->
+    <div class="audio-container">
+        <p>🎵 Play Appa's Birthday Soundtrack</p>
+        <audio controls style="width: 100%;">
+            <source src="music.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
     </div>
-    <div class="frame">
-        <img src="photo2.JPG" alt="Dad Photo 2">
+
+    <!-- Photo Gallery Grid -->
+    <div class="gallery">
+        <div class="frame">
+            <img src="photo1.JPG" alt="Dad Photo 1">
+        </div>
+        <div class="frame">
+            <img src="photo2.JPG" alt="Dad Photo 2">
+        </div>
+        <div class="frame">
+            <img src="photo3.JPG" alt="Dad Photo 3">
+        </div>
     </div>
-    <div class="frame">
-        <img src="photo3.JPG" alt="Dad Photo 3">
+
+    <!-- Interactive Special Messages (Change this text to whatever you like!) -->
+    <div class="message-section">
+        <h2>Tap to Open Messages ✨</h2>
+        
+        <details>
+            <summary>✉️ Message 1: To the Best Dad</summary>
+            <p>Happy Birthday, Appa! Thank you for always guiding me, supporting my dreams, and being the rock of our family. This page is a small token of how much you mean to us.</p>
+        </details>
+
+        <details>
+            <summary>💡 Message 2: My Favorite Memory</summary>
+            <p>Type a beautiful memory you share with him right here! It could be a road trip, a life lesson he taught you, or a funny moment you both laughed at.</p>
+        </details>
+
+        <details>
+            <summary>🌟 Message 3: A Wish For Your Year Ahead</summary>
+            <p>Wishing you a year filled with amazing health, profound happiness, endless relaxation, and success in everything you touch. You deserve the absolute best!</p>
+        </details>
     </div>
+
 </div>
+
+<!-- JavaScript Engine for the Custom Floating Confetti Stream -->
+<script>
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let confetti = [];
+    const colors = ['#ffd700', '#ffffff', '#ff4136', '#0074d9', '#2ecc40', '#ff851b'];
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas, false);
+    resizeCanvas();
+
+    class ConfettiParticle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height - canvas.height;
+            this.size = Math.random() * 7 + 4;
+            this.color = colors[Math.floor(Math.random() * colors.length)];
+            this.speed = Math.random() * 3 + 2;
+            this.rotation = Math.random() * 360;
+            this.rotationSpeed = Math.random() * 4 - 2;
+        }
+        update() {
+            this.y += this.speed;
+            this.rotation += this.rotationSpeed;
+            if (this.y > canvas.height) {
+                this.y = -20;
+                this.x = Math.random() * canvas.width;
+            }
+        }
+        draw() {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation * Math.PI / 180);
+            ctx.fillStyle = this.color;
+            ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+            ctx.restore();
+        }
+    }
+
+    function initConfetti() {
+        for (let i = 0; i < 120; i++) {
+            confetti.push(new ConfettiParticle());
+        }
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        confetti.forEach(p => {
+            p.update();
+            p.draw();
+        });
+        requestAnimationFrame(animate);
+    }
+
+    // Start everything on load
+    initConfetti();
+    animate();
+
+    // Alert Message box prompt
+    setTimeout(() => {
+        alert("🎉 Happy Birthday Appa! Welcome to your digital surprise! 🎂");
+    }, 500);
+</script>
 
 </body>
 </html>
