@@ -1,5 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Happy Birthday APPA</title>
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden;
+        }
 
-    </div>
+        /* PREMIUM ENTRY SPLASH SCREEN (Guarantees Audio Works Flawlessly) */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0d0d0d;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s ease, visibility 1s;
+        }
+
+        .splash-title {
+            color: #ffd700;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .enter-btn {
+            background: linear-gradient(135deg, #ffd700, #b8860b);
+            color: #000;
+            border: none;
+            padding: 16px 45px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .enter-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.8);
+        }
+
+        /* MAIN CONTENT WRAPPER */
+        .wrapper {
+            padding: 60px 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1.5s ease, transform 1.5s ease;
+        }
+
+        .wrapper.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1 {
+            color: #ffd700;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: #aaaaaa;
+            font-size: 1.2rem;
+            margin-bottom: 45px;
+            letter-spacing: 1px;
+        }
+
+        /* PREMIUM GALLERY WITH SPOTLIGHT HOVER EFFECTS */
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            max-width: 600px;
+            margin: 0 auto 60px auto;
+        }
+
+        .frame {
+            background: #141414;
+            padding: 16px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+            border: 1px solid #252525;
+            width: 100%;
+            box-sizing: border-box;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s, box-shadow 0.4s;
+        }
+
+        .frame:hover {
+            transform: scale(1.03);
+            border-color: #ffd700;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.25), 0 15px 35px rgba(0,0,0,0.9);
+        }
+
+        .frame img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            display: block;
+        }
+
+        /* INTERACTIVE MESSAGES STYLING */
+        .message-section {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .message-section h2 {
+            text-align: center;
+            color: #ffd700;
+            margin-bottom: 25px;
+            font-size: 1.6rem;
+        }
+
+        details {
+            background: #141414;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #252525;
+            cursor: pointer;
+            transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        details:hover {
+            border-color: rgba(255, 215, 0, 0.4);
+        }
+
+        details[open] {
+            background: #1a1a1a;
+            border-color: #ffd700;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+
+        summary {
+            font-weight: 600;
+            color: #ffd700;
+            outline: none;
+            user-select: none;
+            font-size: 1.1rem;
+        }
+
+        details p {
+            margin-top: 14px;
+            color: #dddddd;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* CANVAS BACKGROUND OVERLAY */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+
+<!-- The Interactive Opening Portal Card -->
+<div id="splash-screen">
+    <h2 class="splash-title">✉️ You have an exclusive invitation...</h2>
+    <button class="enter-btn" onclick="unlockSurprise()">Open Surprise ✨</button>
+</div>
+
+<!-- Hidden Audio Player (Starts beautifully synced when button above is tapped) -->
+<audio id="birthday-bgm" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Background Visual Engine Canvas -->
+<canvas id="confetti-canvas"></canvas>
+
+<div class="wrapper" id="main-content">
+
+    <h1>🎉 Happy Birthday APPA! 🎉</h1>
+    <p class="subtitle">Welcome to your official Hall of Fame.</p>
 
     <!-- Photo Gallery Grid -->
     <div class="gallery">
@@ -14,7 +213,7 @@
         </div>
     </div>
 
-    <!-- Interactive Special Messages (Change this text to whatever you like!) -->
+    <!-- Interactive Special Messages -->
     <div class="message-section">
         <h2>Tap to Open Messages ✨</h2>
         
@@ -25,7 +224,7 @@
 
         <details>
             <summary>💡 Message 2: My Favorite Memory</summary>
-            <p>We have made to a lot of trips and milestones that you have bought to us. The Staycation to MOVENPICK was truly deserved for your hard work.</p>
+            <p>Type a beautiful memory you share with him right here! It could be a road trip, a life lesson he taught you, or a funny moment you both laughed at.</p>
         </details>
 
         <details>
@@ -36,11 +235,31 @@
 
 </div>
 
-<!-- JavaScript Engine for the Custom Floating Confetti Stream -->
+<!-- JavaScript System For Celebratory VFX and Audio Control -->
 <script>
+    // --- PORTAL UNLOCK AND MUSIC RUNNER ---
+    function unlockSurprise() {
+        // Fade out splash screen overlay card
+        const splash = document.getElementById('splash-screen');
+        splash.style.opacity = '0';
+        setTimeout(() => splash.style.display = 'none', 1000);
+
+        // Fade in main page details fluidly
+        document.getElementById('main-content').classList.add('visible');
+
+        // Play the track instantly
+        const music = document.getElementById('birthday-bgm');
+        music.play().catch(e => console.log("Audio play event handled cleanly:", e));
+
+        // Start premium background engine
+        initVisuals();
+        animate();
+    }
+
+    // --- VISUAL EFFECTS ENGINE (Confetti & Glowing Hearts) ---
     const canvas = document.getElementById('confetti-canvas');
     const ctx = canvas.getContext('2d');
-    let confetti = [];
+    let visualParticles = [];
     const colors = ['#ffd700', '#ffffff', '#ff4136', '#0074d9', '#2ecc40', '#ff851b'];
 
     function resizeCanvas() {
@@ -50,15 +269,17 @@
     window.addEventListener('resize', resizeCanvas, false);
     resizeCanvas();
 
-    class ConfettiParticle {
+    class CelebrationParticle {
         constructor() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height - canvas.height;
-            this.size = Math.random() * 7 + 4;
+            this.size = Math.random() * 6 + 4;
             this.color = colors[Math.floor(Math.random() * colors.length)];
-            this.speed = Math.random() * 3 + 2;
+            this.speed = Math.random() * 3 + 1.8;
             this.rotation = Math.random() * 360;
             this.rotationSpeed = Math.random() * 4 - 2;
+            // 25% of particles generate as custom golden falling hearts
+            this.isHeart = Math.random() < 0.25; 
         }
         update() {
             this.y += this.speed;
@@ -72,35 +293,38 @@
             ctx.save();
             ctx.translate(this.x, this.y);
             ctx.rotate(this.rotation * Math.PI / 180);
-            ctx.fillStyle = this.color;
-            ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+            
+            if (this.isHeart) {
+                // Renders custom gold tiny celebratory hearts
+                ctx.fillStyle = "#ffd700";
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.bezierCurveTo(-this.size, -this.size, -this.size*1.5, this.size/3, 0, this.size*1.3);
+                ctx.bezierCurveTo(this.size*1.5, this.size/3, this.size, -this.size, 0, 0);
+                ctx.fill();
+            } else {
+                // Renders standard luxury confetti
+                ctx.fillStyle = this.color;
+                ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+            }
             ctx.restore();
         }
     }
 
-    function initConfetti() {
-        for (let i = 0; i < 120; i++) {
-            confetti.push(new ConfettiParticle());
+    function initVisuals() {
+        for (let i = 0; i < 140; i++) {
+            visualParticles.push(new CelebrationParticle());
         }
     }
 
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        confetti.forEach(p => {
+        visualParticles.forEach(p => {
             p.update();
             p.draw();
         });
         requestAnimationFrame(animate);
     }
-
-    // Start everything on load
-    initConfetti();
-    animate();
-
-    // Alert Message box prompt
-    setTimeout(() => {
-        alert("🎉 Happy Birthday Appa! Welcome to your digital surprise! 🎂");
-    }, 500);
 </script>
 
 </body>
